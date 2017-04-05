@@ -1,0 +1,11 @@
+https://habrahabr.ru/post/309222/
+
+export PATH=/usr/local/apache-maven-3.3.9/bin:$PATH
+
+проверить JAVA_HOME
+echo $JAVA_HOME
+echo $PATH
+
+mvn --version
+mvn compile
+mvn exec:java -Dexec.mainClass="com.app.Solution"
