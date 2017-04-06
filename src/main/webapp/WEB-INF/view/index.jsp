@@ -1,17 +1,17 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
+
 <head>
-    <title>Title</title>
+    <title>Index Page</title>
 </head>
+
 <body>
+    <a href="welcome.html">welcome link</a><br>
 
-<div>
-    <h2>
-        H2 text<br> <br>
-    </h2>
-    <h3>
 
-        <a href="welcome.html">welcome link</a>
-    </h3>
-</div>
+
 </body>
+
 </html>
