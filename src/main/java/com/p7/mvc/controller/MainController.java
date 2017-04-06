@@ -21,19 +21,28 @@ public class MainController {
 <spring:form method="post"  modelAttribute="userJSP" action="check-user">,
 то попадем вот сюда
  */
-    @RequestMapping(value = "/second")
+    @RequestMapping(value = "/check-user")
     public ModelAndView checkUser(@ModelAttribute("userJSP") User user) {
         ModelAndView modelAndView = new ModelAndView();
 
         //имя представления, куда нужно будет перейти
         modelAndView.setViewName("second");
+
+        //записываем в атрибут userJSP (используется на странице *.jsp объект user
+        modelAndView.addObject("userJSP", user);
+
+        return modelAndView; //после уйдем на представление, указанное чуть выше, если оно будет найдено.
+    }
+
+    @RequestMapping(value = "/second")
+    public ModelAndView second() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("second");
         User q=new User();
         q.setName("qqq");
         q.setPassword("www");
-        //записываем в атрибут userJSP (используется на странице *.jsp объект user
         modelAndView.addObject("userJSP", q);
-
-        return modelAndView; //после уйдем на представление, указанное чуть выше, если оно будет найдено.
+        return modelAndView;
     }
 
     @RequestMapping("/welcome")

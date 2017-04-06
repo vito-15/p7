@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <a href="welcome.html">welcome link</a><br>
+    <a href="welcome">welcome link</a><br>
 
 
 
