@@ -10,6 +10,10 @@
 <body>
     <a href="welcome">welcome link</a><br>
     <a href="customer">customer link</a><br>
+    <a href="greeting">greeting link</a><br>
+    <a href="http://localhost:8080/greeting?name=User">greeting User link</a><br>
+
+
 
 
 </body>
