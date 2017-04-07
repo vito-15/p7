@@ -1,1 +1,1 @@
-http://javastudy.ru/spring-mvc/spring-mvc-4-example-for-beginners/
+http://spring-projects.ru/guides/

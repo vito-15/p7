@@ -57,9 +57,6 @@
       <artifactId>spring-core</artifactId>
     </dependency>
 
-
-
-
     <!-- Other Servlet Web dependencies -->
     <dependency>
       <groupId>javax.servlet</groupId>
