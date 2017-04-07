@@ -39,12 +39,8 @@
         </tr>
     </table>
     <div>
-        <input type = "submit" value = "Submit"/>
-        <a type="submit" href="/greetingForm" class="btn btn-success" role="button" >Link Button</a>
-
+        <button type="submit" value=" Send" class="btn btn-success" id="submit">Send</button>
     </div>
-    <a class="btn-danger" href="/qqq">qqq</a>
-
 </form:form>
 </div>
 
