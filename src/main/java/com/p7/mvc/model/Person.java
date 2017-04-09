@@ -1,58 +1,51 @@
 package com.p7.mvc.model;
 
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+/**
+ * Entity bean with JPA annotations
+ * Hibernate provides JPA implementation
+ *
+ */
 @Entity
-@Table(name = "PERSON")
-public class Person implements Serializable{
+@Table(name="Person")
+public class Person {
+
     @Id
-    @Column(name = "ID")
-    @GeneratedValue
-    private Integer id;
+    @Column(name="ID")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int id;
 
-    @Column(name = "FIRST_NAME")
-    private String firstName;
+    private String name;
 
-    @Column(name = "LAST_NAME")
-    private String lastName;
+    private String country;
 
-    @Column(name = "MONEY")
-    private Double money;
-
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getCountry() {
+        return country;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
-    public Double getMoney() {
-        return money;
-    }
-
-    public void setMoney(Double money) {
-        this.money = money;
+    @Override
+    public String toString(){
+        return "id="+id+", name="+name+", country="+country;
     }
 }
