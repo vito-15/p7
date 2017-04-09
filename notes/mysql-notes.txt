@@ -3,5 +3,5 @@ GRANT ALL PRIVILEGES ON *.* TO 'root2'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 SELECT User,Host FROM mysql.user;
 
-mysqldump -u root2 -p test > test.sql
+mysqldump -u root -p test > test.sql
 mysql -u root2 -p test < test.sql

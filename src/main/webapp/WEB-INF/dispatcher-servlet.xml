@@ -35,13 +35,13 @@
 
 
     <!-- Hibernate 5 SessionFactory Bean definition -->
-
     <beans:bean id="hibernate5AnnotatedSessionFactory"
                 class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <beans:property name="dataSource" ref="dataSource" />
         <beans:property name="annotatedClasses">
             <beans:list>
                 <beans:value>com.p7.mvc.model.Person</beans:value>
+                <beans:value>com.p7.mvc.model.Task</beans:value>
             </beans:list>
         </beans:property>
         <beans:property name="hibernateProperties">
@@ -53,15 +53,25 @@
         </beans:property>
     </beans:bean>
 
-
+    <!-- PersonManager beans -->
     <beans:bean id="personDAO" class="com.p7.mvc.dao.PersonDAOImpl">
         <beans:property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
     </beans:bean>
-
-
     <beans:bean id="personService" class="com.p7.mvc.service.PersonServiceImpl">
         <beans:property name="personDAO" ref="personDAO"></beans:property>
     </beans:bean>
+
+
+
+    <!-- TaskManager beans -->
+    <beans:bean id="taskDAO" class="com.p7.mvc.dao.TaskDAOImpl">
+        <beans:property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+    </beans:bean>
+    <beans:bean id="taskService" class="com.p7.mvc.service.TaskServiceImpl">
+        <beans:property name="taskDAO" ref="taskDAO"></beans:property>
+    </beans:bean>
+
+
 
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
