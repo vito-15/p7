@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -26,5 +28,24 @@ public class TaskController {
         model.addAttribute("listTasks", this.taskService.listTasks());
         return "taskList";
     }
+    @RequestMapping(value = "/tasks/edit/{id}",method = RequestMethod.GET)
+    public String editTask(@PathVariable("id") int id){
+
+
+        return "editTask";
+    }
+
+    @RequestMapping(value = "/tasks/add",method = RequestMethod.GET)
+    public String addTaskForm(Model model){
+        model.addAttribute("taskJSP",new Task());
+        return "addTask";
+    }
+    @RequestMapping(value = "/tasks/add",method = RequestMethod.POST)
+    public String addTaskSubmit(@ModelAttribute Task task, Model model){
+        this.taskService.addTask(task);
+        //После добавления таска показываем страницу со списком всех задач
+        return listTasks(model);
+    }
+
 
 }

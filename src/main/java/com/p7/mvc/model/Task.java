@@ -12,7 +12,7 @@ public class Task implements Serializable{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     private String text;
-    private boolean isDone;
+    private boolean isDone=false;
 
 
     public int getId() {
