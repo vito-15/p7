@@ -9,7 +9,7 @@
 </head>
 <body>
 
-
+<jsp:include page="navbar.jsp" />
     <div class="container">
         <form:form modelAttribute="taskJSP" action="/tasks/add" method="post">
             <table class="table">

@@ -8,7 +8,7 @@
     <link href="/resources/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-
+<jsp:include page="navbar.jsp" />
 <div class="container">
     <form:form modelAttribute="taskJSP" action="/tasks/edit" method="post">
         <table class="table">

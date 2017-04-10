@@ -8,7 +8,7 @@
     <link href="/resources/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-
+<jsp:include page="navbar.jsp" />
 <div class="container">
     <a class="btn btn-success" href="/tasks/add" role="button">Add new task</a><br>
     <c:if test="${!empty listTasks}">
