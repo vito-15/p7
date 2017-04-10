@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class TaskController {
     private TaskService taskService;
+    //private static final Logger logger = Logger.getLogger("TaskController.class");
 
     @Autowired(required=true)
     @Qualifier(value="taskService")
@@ -42,7 +43,16 @@ public class TaskController {
     }
     @RequestMapping(value = "/tasks/add",method = RequestMethod.POST)
     public String addTaskSubmit(@ModelAttribute Task task, Model model){
+        /*
+        try{
+            task.setText(new String(task.getText().getBytes("ISO-8859-1"), "UTF-8"));
+        }catch (UnsupportedEncodingException e){
+            logger.error("addTaskSubmit UnsupportedEncodingException "+e.toString());
+        }
+        */
+
         this.taskService.addTask(task);
+
         //После добавления таска показываем страницу со списком всех задач
         return listTasks(model);
     }
