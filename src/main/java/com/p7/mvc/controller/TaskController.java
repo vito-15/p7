@@ -24,16 +24,20 @@ public class TaskController {
 
     @RequestMapping(value = "/tasks", method = RequestMethod.GET)
     public String listTasks(Model model) {
-        //Для создания новой задачи
-        //model.addAttribute("task", new Task());
         model.addAttribute("listTasks", this.taskService.listTasks());
         return "taskList";
     }
+
     @RequestMapping(value = "/tasks/edit/{id}",method = RequestMethod.GET)
-    public String editTask(@PathVariable("id") int id){
-
-
+    public String editTaskForm(@PathVariable("id") int id, Model model){
+        model.addAttribute("taskJSP", this.taskService.getTaskById(id));
         return "editTask";
+    }
+
+    @RequestMapping(value = "/tasks/edit",method = RequestMethod.POST)
+    public String editTaskSubmit(@ModelAttribute Task task){
+        this.taskService.updateTask(task);
+        return "redirect:/tasks";
     }
 
     @RequestMapping(value = "/tasks/add",method = RequestMethod.GET)
@@ -41,20 +45,11 @@ public class TaskController {
         model.addAttribute("taskJSP",new Task());
         return "addTask";
     }
+
     @RequestMapping(value = "/tasks/add",method = RequestMethod.POST)
-    public String addTaskSubmit(@ModelAttribute Task task, Model model){
-        /*
-        try{
-            task.setText(new String(task.getText().getBytes("ISO-8859-1"), "UTF-8"));
-        }catch (UnsupportedEncodingException e){
-            logger.error("addTaskSubmit UnsupportedEncodingException "+e.toString());
-        }
-        */
-
+    public String addTaskSubmit(@ModelAttribute Task task){
         this.taskService.addTask(task);
-
-        //После добавления таска показываем страницу со списком всех задач
-        return listTasks(model);
+        return "redirect:/tasks";
     }
 
 

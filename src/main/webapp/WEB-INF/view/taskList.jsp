@@ -9,19 +9,12 @@
 </head>
 <body>
 
-<c:if test="${!empty listTasks}">
-
-</c:if>
-
 <div class="container">
+    <a class="btn btn-success" href="/tasks/add" role="button">Add</a><br>
+    <c:if test="${!empty listTasks}">
     <table class="table">
         <caption>
-            <c:if test="${!empty listTasks}">
-                Список всех задач
-            </c:if>
-            <c:if test="${empty listTasks}">
-                Список задач пуст
-            </c:if>
+            Список всех задач
         </caption>
         <c:if test="${!empty listTasks}">
             <tr>
@@ -36,20 +29,17 @@
                     <td>${task.text}</td>
                     <td>${task.done}</td>
                     <td>
-                        <a class="btn btn-primary" href="/taskEdit/${task.id}" role="button">Edit</a>
+                        <a class="btn btn-primary" href="/tasks/edit/${task.id}" role="button">Edit</a>
                     </td>
                 </tr>
             </c:forEach>
         </c:if>
-
     </table>
+    </c:if>
 </div>
-
-
-
-
-
-
+<c:if test="${empty listTasks}">
+    Список задач пуст
+</c:if>
 <script src="/resources/jquery/3.2.0/jquery.min.js"></script>
 <script src="/resources/css/bootstrap.min.js"></script>
 </body>

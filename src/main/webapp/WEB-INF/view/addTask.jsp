@@ -20,7 +20,7 @@
                 </tr>
             </table>
             <div>
-                <button type="submit" value=" Send" class="btn btn-success" id="submit">Add</button>
+                <button type="submit" value=" Send" class="btn btn-success" id="submit">Save</button>
             </div>
         </form:form>
     </div>
