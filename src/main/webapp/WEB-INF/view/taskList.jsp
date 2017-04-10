@@ -10,7 +10,7 @@
 <body>
 
 <div class="container">
-    <a class="btn btn-success" href="/tasks/add" role="button">Add</a><br>
+    <a class="btn btn-success" href="/tasks/add" role="button">Add new task</a><br>
     <c:if test="${!empty listTasks}">
     <table class="table">
         <caption>

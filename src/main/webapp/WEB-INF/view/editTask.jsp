@@ -30,6 +30,9 @@
         </table>
         <div>
             <button type="submit" value=" Send" class="btn btn-success" id="submit">Save</button>
+            <a class="btn btn-primary" href="/tasks/complite/${taskJSP.id}" role="button">Complite</a>
+            <a class="btn btn-primary" href="/tasks/noncomplite/${taskJSP.id}" role="button">NonComplite</a>
+            <a class="btn btn-danger" href="/tasks/remove/${taskJSP.id}" role="button">Remove</a>
         </div>
     </form:form>
 </div>

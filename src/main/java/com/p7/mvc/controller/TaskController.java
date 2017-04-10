@@ -52,5 +52,25 @@ public class TaskController {
         return "redirect:/tasks";
     }
 
+    @RequestMapping(value = "/tasks/remove/{id}")
+    public String removeTask(@PathVariable("id") int id){
+        this.taskService.removeTask(id);
+        return "redirect:/tasks";
+    }
 
+    @RequestMapping(value = "/tasks/complite/{id}")
+    public String compliteTask(@PathVariable("id") int id){
+        Task t = this.taskService.getTaskById(id);
+        t.setDone(true);
+        taskService.updateTask(t);
+        return "redirect:/tasks";
+    }
+
+    @RequestMapping(value = "/tasks/noncomplite/{id}")
+    public String nonCompliteTask(@PathVariable("id") int id){
+        Task t = this.taskService.getTaskById(id);
+        t.setDone(false);
+        taskService.updateTask(t);
+        return "redirect:/tasks";
+    }
 }
