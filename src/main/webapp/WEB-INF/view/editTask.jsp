@@ -15,16 +15,16 @@
             <caption>Edit task</caption>
             <tr>
                 <td><label>ID</label></td>
-                <td><form:input path="id" readonly="true" disabled="true"/></td>
+                <td width="100%"><form:input path="id" readonly="true" disabled="true" size="50"/></td>
                 <form:hidden path="id" />
             </tr>
             <tr>
-                <td><label>Input text</label></td>
-                <td><form:input path="text" /></td>
+                <td><label>Input&nbsp;text</label></td>
+                <td><form:input path="text" size="50"/></td>
             </tr>
             <tr>
                 <td><label>isDone</label></td>
-                <td><form:input path="done" readonly="true" disabled="true"/></td>
+                <td><form:input path="done" readonly="true" disabled="true" size="50"/></td>
                 <form:hidden path="done" />
             </tr>
         </table>

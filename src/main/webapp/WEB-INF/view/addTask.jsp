@@ -15,8 +15,8 @@
             <table class="table">
                 <caption>Create new task</caption>
                 <tr>
-                    <td><label for="taskText">Input text</label> </td>
-                    <td><form:input id="taskText" path="text" /> </td>
+                    <td><label for="taskText">Input&nbsp;text</label> </td>
+                    <td width="100%"><form:input id="taskText" path="text" size="50"/> </td>
                 </tr>
             </table>
             <div>

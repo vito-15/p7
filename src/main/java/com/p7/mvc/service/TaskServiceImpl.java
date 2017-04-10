@@ -40,8 +40,8 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     @Transactional
-    public List<Task> listTasksNotDone(){
-        return this.taskDAO.listTasksNotDone();
+    public List<Task> listTasksNotDone(int firstResult,int total){
+        return this.taskDAO.listTasksNotDone(firstResult,total);
     }
 
     @Override

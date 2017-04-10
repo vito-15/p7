@@ -6,6 +6,11 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+
+import javax.swing.tree.RowMapper;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -54,9 +59,22 @@ public class TaskDAOImpl implements TaskDAO {
     }
 
     @Override
-    public List<Task> listTasksNotDone(){
+    public List<Task> listTasksNotDone(int firstResult,int total){
         Session session = this.sessionFactory.getCurrentSession();
-        List<Task> taskList=session.createQuery("from Task t where not t.isDone").list();
+        String sql =String.format("select * from Task t where not t.isDone limit %d,%d",firstResult,total);
+        Query query=session.createSQLQuery(sql);
+
+        Query q2=session.createQuery("From Task");
+
+
+        List<Task> taskList=new ArrayList<>();
+        List resultList=query.list();
+        for(Object o : resultList){
+            Task t=(Task)o;
+            taskList.add(t);
+        }
+
+
         for(Task t : taskList){
             logger.info("Task List::"+t);
         }

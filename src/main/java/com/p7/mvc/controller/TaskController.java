@@ -24,7 +24,8 @@ public class TaskController {
 
     @RequestMapping(value = "/tasks", method = RequestMethod.GET)
     public String listTasks(Model model) {
-        model.addAttribute("listTasks", this.taskService.listTasks());
+        //model.addAttribute("listTasks", this.taskService.listTasks());
+        model.addAttribute("listTasks", this.taskService.listTasksNotDone(2,5));
         return "taskList";
     }
 
