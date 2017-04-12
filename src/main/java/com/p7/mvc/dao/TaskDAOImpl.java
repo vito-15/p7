@@ -36,6 +36,7 @@ public class TaskDAOImpl implements TaskDAO {
     public List<Task> listTasks(int firstResult,int total) {
         Session session = this.sessionFactory.getCurrentSession();
         Query query=session.createQuery("from Task");
+        //if firstResult==0 && total==0 1 return all tasks
         if(firstResult!=0 || total!=0){
             query.setFirstResult(firstResult);
             query.setMaxResults(total);
@@ -50,6 +51,7 @@ public class TaskDAOImpl implements TaskDAO {
     public List<Task> listTasksDone(int firstResult,int total){
         Session session = this.sessionFactory.getCurrentSession();
         Query query=session.createQuery("FROM Task WHERE isDone = :isdone").setBoolean("isdone",Boolean.TRUE);
+        //if firstResult==0 && total==0 1 return all tasks
         if(firstResult!=0 || total!=0){
             query.setFirstResult(firstResult);
             query.setMaxResults(total);
@@ -94,6 +96,5 @@ public class TaskDAOImpl implements TaskDAO {
             session.delete(t);
         }
         logger.info("Task deleted successfully, Task Details="+t);
-
     }
 }
