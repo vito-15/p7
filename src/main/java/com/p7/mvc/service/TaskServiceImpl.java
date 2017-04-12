@@ -28,14 +28,14 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     @Transactional
-    public List<Task> listTasks() {
-        return this.taskDAO.listTasks();
+    public List<Task> listTasks(int firstResult,int total) {
+        return this.taskDAO.listTasks(firstResult,total);
     }
 
     @Override
     @Transactional
-    public List<Task> listTasksDone(){
-        return this.taskDAO.listTasksDone();
+    public List<Task> listTasksDone(int firstResult,int total){
+        return this.taskDAO.listTasksDone(firstResult,total);
     }
 
     @Override

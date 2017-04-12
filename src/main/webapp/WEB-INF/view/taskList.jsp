@@ -14,7 +14,7 @@
     <c:if test="${!empty listTasks}">
     <table class="table">
         <caption>
-            Список всех задач
+            All tasks
         </caption>
         <c:if test="${!empty listTasks}">
             <tr>
@@ -36,10 +36,11 @@
         </c:if>
     </table>
     </c:if>
+    <c:if test="${empty listTasks}">
+        Task list is empty!
+    </c:if>
 </div>
-<c:if test="${empty listTasks}">
-    Список задач пуст
-</c:if>
+
 <script src="/resources/jquery/3.2.0/jquery.min.js"></script>
 <script src="/resources/css/bootstrap.min.js"></script>
 </body>

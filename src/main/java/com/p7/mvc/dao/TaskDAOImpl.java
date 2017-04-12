@@ -7,10 +7,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
-import javax.swing.tree.RowMapper;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -36,22 +32,29 @@ public class TaskDAOImpl implements TaskDAO {
         logger.info("Task updated successfully, Task Details="+t);
     }
 
-    //Example
-    //Query query = session.createQuery("from Student s where s.name like 'k%'");
-
     @Override
-    public List<Task> listTasks() {
+    public List<Task> listTasks(int firstResult,int total) {
         Session session = this.sessionFactory.getCurrentSession();
-        List<Task> taskList=session.createQuery("from Task").list();
+        Query query=session.createQuery("from Task");
+        if(firstResult!=0 || total!=0){
+            query.setFirstResult(firstResult);
+            query.setMaxResults(total);
+        }
+        List<Task> taskList=query.list();
         for(Task t : taskList){
             logger.info("Task List::"+t);
         }
         return taskList;
     }
     @Override
-    public List<Task> listTasksDone(){
+    public List<Task> listTasksDone(int firstResult,int total){
         Session session = this.sessionFactory.getCurrentSession();
-        List<Task> taskList=session.createQuery("from Task t where t.isDone").list();
+        Query query=session.createQuery("FROM Task WHERE isDone = :isdone").setBoolean("isdone",Boolean.TRUE);
+        if(firstResult!=0 || total!=0){
+            query.setFirstResult(firstResult);
+            query.setMaxResults(total);
+        }
+        List<Task> taskList=query.list();
         for(Task t : taskList){
             logger.info("Task List::"+t);
         }
@@ -61,19 +64,13 @@ public class TaskDAOImpl implements TaskDAO {
     @Override
     public List<Task> listTasksNotDone(int firstResult,int total){
         Session session = this.sessionFactory.getCurrentSession();
-        String sql =String.format("select * from Task t where not t.isDone limit %d,%d",firstResult,total);
-        Query query=session.createSQLQuery(sql);
-
-        Query q2=session.createQuery("From Task");
-
-
-        List<Task> taskList=new ArrayList<>();
-        List resultList=query.list();
-        for(Object o : resultList){
-            Task t=(Task)o;
-            taskList.add(t);
+        Query query=session.createQuery("FROM Task WHERE isDone = :isdone").setBoolean("isdone",Boolean.FALSE);
+        //if firstResult==0 && total==0 1 return all tasks
+        if(firstResult!=0 || total!=0){
+            query.setFirstResult(firstResult);
+            query.setMaxResults(total);
         }
-
+        List<Task> taskList=query.list();
 
         for(Task t : taskList){
             logger.info("Task List::"+t);

@@ -6,8 +6,8 @@ import java.util.List;
 public interface TaskService {
     public void addTask(Task t);
     public void updateTask(Task t);
-    public List<Task> listTasks();
-    public List<Task> listTasksDone();
+    public List<Task> listTasks(int firstResult,int total);
+    public List<Task> listTasksDone(int firstResult,int total);
     public List<Task> listTasksNotDone(int firstResult,int total);
     public Task getTaskById(int id);
     public void removeTask(int id);
