@@ -11,6 +11,8 @@
 <jsp:include page="navbar.jsp" />
 <div class="navbar-left">
     <a class="btn btn-success" href="/tasks/add" role="button">Add new task</a><br>
+        <!-- Cannot resolve symbol 'pageDataJSP because one method calls another-->
+        <!-- it's normal, it's works-->
         <form:form modelAttribute="pageDataJSP" action="/tasks" method="post">
             <table>
             <tr>

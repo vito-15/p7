@@ -1,6 +1,8 @@
 package com.p7.mvc.model;
 
-
+/**
+ * Contains data for pagination on taskList page
+ */
 public class PageViewData {
     private int firstResult;
     private int total;

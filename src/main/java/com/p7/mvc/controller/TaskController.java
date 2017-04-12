@@ -11,9 +11,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import java.util.HashMap;
 import java.util.Map;
+
+/**
+ * /task Controller
+ * Pagination - show,prev,next
+ * add, edit, remove, update
+ * mark as done/nonDone
+ */
 
 @Controller
 public class TaskController {

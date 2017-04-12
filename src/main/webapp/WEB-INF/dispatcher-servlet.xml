@@ -22,16 +22,13 @@
         <property name="suffix" value=".jsp" />
     </beans:bean>
 
-
     <beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
                 destroy-method="close">
         <beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <beans:property name="url" value="jdbc:mysql://localhost:3306/test?characterEncoding=UTF-8" />
         <beans:property name="username" value="root" />
         <beans:property name="password" value="root" />
-
     </beans:bean>
-
 
     <!-- Hibernate 5 SessionFactory Bean definition -->
     <beans:bean id="hibernate5AnnotatedSessionFactory"
@@ -39,7 +36,6 @@
         <beans:property name="dataSource" ref="dataSource" />
         <beans:property name="annotatedClasses">
             <beans:list>
-                <beans:value>com.p7.mvc.model.Person</beans:value>
                 <beans:value>com.p7.mvc.model.Task</beans:value>
             </beans:list>
         </beans:property>
@@ -52,16 +48,6 @@
         </beans:property>
     </beans:bean>
 
-    <!-- PersonManager beans -->
-    <beans:bean id="personDAO" class="com.p7.mvc.dao.PersonDAOImpl">
-        <beans:property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
-    </beans:bean>
-    <beans:bean id="personService" class="com.p7.mvc.service.PersonServiceImpl">
-        <beans:property name="personDAO" ref="personDAO"></beans:property>
-    </beans:bean>
-
-
-
     <!-- TaskManager beans -->
     <beans:bean id="taskDAO" class="com.p7.mvc.dao.TaskDAOImpl">
         <beans:property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
@@ -70,14 +56,10 @@
         <beans:property name="taskDAO" ref="taskDAO"></beans:property>
     </beans:bean>
 
-
-
-
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <beans:bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <beans:property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
     </beans:bean>
-
 
 </beans:beans>

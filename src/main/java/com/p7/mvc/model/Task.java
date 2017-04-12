@@ -3,7 +3,6 @@ package com.p7.mvc.model;
 import javax.persistence.*;
 import java.io.Serializable;
 
-
 @Entity
 @Table(name="Task")
 public class Task implements Serializable{
