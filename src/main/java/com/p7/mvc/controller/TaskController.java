@@ -66,11 +66,6 @@ public class TaskController {
     @RequestMapping(value = "/tasks",params="show", method = RequestMethod.POST)
     public String listTasksShow(@ModelAttribute PageViewData data, Model model) {
         if(data.getFirstResult()<0 || data.getTotal()<0)return listTasksDefault(model);
-        //calculate new firstResult
-        //data.setFirstResult(data.getFirstResult()+data.getTotal());
-
-        //data.setFirstResult(data.getFirstResult()-data.getTotal());
-        //if(data.getFirstResult()<0)data.setFirstResult(0);
         return listTasks(model,data);
     }
 
@@ -79,9 +74,6 @@ public class TaskController {
         if(data.getFirstResult()<0 || data.getTotal()<0)return listTasksDefault(model);
         //calculate new firstResult
         data.setFirstResult(data.getFirstResult()+data.getTotal());
-
-        //data.setFirstResult(data.getFirstResult()-data.getTotal());
-        //if(data.getFirstResult()<0)data.setFirstResult(0);
         return listTasks(model,data);
     }
 
