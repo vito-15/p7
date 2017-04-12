@@ -1,5 +1,6 @@
 package com.p7.mvc.controller;
 
+import com.p7.mvc.model.PageViewData;
 import com.p7.mvc.model.Task;
 import com.p7.mvc.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class TaskController {
@@ -22,12 +26,67 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @RequestMapping(value = "/tasks", method = RequestMethod.GET)
-    public String listTasks(Model model) {
-        model.addAttribute("listTasks", this.taskService.listTasks(10,5));
-        //model.addAttribute("listTasks", this.taskService.listTasksNotDone(10,5));
+    public String listTasks(Model model,PageViewData data) {
+        Map< String, String > taskFilter = new HashMap<String, String>();
+        taskFilter.put("all","All");
+        taskFilter.put("done","Complited");
+        taskFilter.put("nonDone","Not complited");
 
+        model.addAttribute("taskFilterJSP",taskFilter);
+
+        model.addAttribute("pageDataJSP",data);
+        if(data.getShowTasks().equals("all")){
+            model.addAttribute("listTasksJSP", this.taskService.listTasks(data.getFirstResult(),data.getTotal()));
+        }
+        if(data.getShowTasks().equals("done")){
+            model.addAttribute("listTasksJSP", this.taskService.listTasksDone(data.getFirstResult(),data.getTotal()));
+        }
+
+        if(data.getShowTasks().equals("nonDone")){
+            model.addAttribute("listTasksJSP", this.taskService.listTasksNotDone(data.getFirstResult(),data.getTotal()));
+        }
         return "taskList";
+    }
+
+    //Default parameters
+    @RequestMapping(value = "/tasks", method = RequestMethod.GET)
+    public String listTasksDefault(Model model) {
+        PageViewData data=new PageViewData();
+        data.setFirstResult(0);
+        data.setTotal(10);
+        data.setShowTasks("nonDone");
+        return listTasks(model,data);
+    }
+
+    @RequestMapping(value = "/tasks",params="show", method = RequestMethod.POST)
+    public String listTasksShow(@ModelAttribute PageViewData data, Model model) {
+        if(data.getFirstResult()<0 || data.getTotal()<0)return listTasksDefault(model);
+        //calculate new firstResult
+        //data.setFirstResult(data.getFirstResult()+data.getTotal());
+
+        //data.setFirstResult(data.getFirstResult()-data.getTotal());
+        //if(data.getFirstResult()<0)data.setFirstResult(0);
+        return listTasks(model,data);
+    }
+
+    @RequestMapping(value = "/tasks",params="next", method = RequestMethod.POST)
+    public String listTasksNext(@ModelAttribute PageViewData data, Model model) {
+        if(data.getFirstResult()<0 || data.getTotal()<0)return listTasksDefault(model);
+        //calculate new firstResult
+        data.setFirstResult(data.getFirstResult()+data.getTotal());
+
+        //data.setFirstResult(data.getFirstResult()-data.getTotal());
+        //if(data.getFirstResult()<0)data.setFirstResult(0);
+        return listTasks(model,data);
+    }
+
+    @RequestMapping(value = "/tasks",params="prev", method = RequestMethod.POST)
+    public String listTasksPrev(@ModelAttribute PageViewData data, Model model) {
+        if(data.getFirstResult()<0 || data.getTotal()<0)return listTasksDefault(model);
+        //calculate new firstResult
+        data.setFirstResult(data.getFirstResult()-data.getTotal());
+        if(data.getFirstResult()<0)data.setFirstResult(0);
+        return listTasks(model,data);
     }
 
     @RequestMapping(value = "/tasks/edit/{id}",method = RequestMethod.GET)
