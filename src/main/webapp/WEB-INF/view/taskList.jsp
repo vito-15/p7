@@ -11,8 +11,6 @@
 <jsp:include page="navbar.jsp" />
 <div class="navbar-left">
     <a class="btn btn-success" href="/tasks/add" role="button">Add new task</a><br>
-
-
         <form:form modelAttribute="pageDataJSP" action="/tasks" method="post">
             <table>
             <tr>
@@ -38,21 +36,20 @@
             <button type="submit" name="prev" class="btn btn-primary">Prev</button>
             <button type="submit" name="show" class="btn btn-default">Show</button>
             <button type="submit" name="next" class="btn btn-primary">Next</button>
-
-        </form:form>
+      </form:form>
 
 </div>
 <div class="container">
     <c:if test="${!empty listTasksJSP}">
     <table class="table">
         <caption>
-            <c:if test="${pageDataJSP.showTasks}==\"all\"">
+            <c:if test="${pageDataJSP.showTasks=='all'}">
                 All tasks (${listTasksJSP.size()})
             </c:if>
-            <c:if test="${pageDataJSP.showTasks}==\"complited\"">
+            <c:if test="${pageDataJSP.showTasks=='done'}">
                 All complited tasks (${listTasksJSP.size()})
             </c:if>
-            <c:if test="${pageDataJSP.showTasks}==\"nonComplited\"">
+            <c:if test="${pageDataJSP.showTasks=='nonDone'}">
                 All not complited tasks (${listTasksJSP.size()})
             </c:if>
         </caption>
@@ -60,14 +57,19 @@
             <tr>
                 <th>Task ID</th>
                 <th>Text</th>
-                <th>isDone</th>
+                <c:if test="${pageDataJSP.showTasks=='all'}">
+                    <th>isDone</th>
+                </c:if>
+
                 <th>Action</th>
             </tr>
             <c:forEach items="${listTasksJSP}" var="task">
                 <tr>
                     <td>${task.id}</td>
                     <td>${task.text}</td>
-                    <td>${task.done}</td>
+                    <c:if test="${pageDataJSP.showTasks=='all'}">
+                        <td>${task.done}</td>
+                    </c:if>
                     <td>
                         <a class="btn btn-default" href="/tasks/edit/${task.id}" role="button">Edit</a>
                     </td>

@@ -41,7 +41,6 @@ public class TaskController {
         if(data.getShowTasks().equals("done")){
             model.addAttribute("listTasksJSP", this.taskService.listTasksDone(data.getFirstResult(),data.getTotal()));
         }
-
         if(data.getShowTasks().equals("nonDone")){
             model.addAttribute("listTasksJSP", this.taskService.listTasksNotDone(data.getFirstResult(),data.getTotal()));
         }

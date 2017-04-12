@@ -15,7 +15,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/index">About<span class="sr-only">(current)</span></a></li>
-                <li class="active"><a href="/tasks">tasks<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="/tasks/add">Add new task<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="/tasks">Task list<span class="sr-only">(current)</span></a></li>
             </ul>
         </div>
     </div>
