@@ -22,7 +22,7 @@
     <hibernate.version>5.0.5.Final</hibernate.version>
 
     <!-- Spring -->
-    <spring-framework.version>4.3.7.RELEASE</spring-framework.version>
+    <spring-framework.version>4.3.16.RELEASE</spring-framework.version>
 
   </properties>
 
